@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture & UML Diagrams Viewer</title>
+    <meta name="description" content="พอร์ตโฟลิโอแสดงแผนภาพระบบยืม-คืนอุปกรณ์: Activity, Use Case, Sequence Diagram">
+    <link rel="stylesheet" href="style-diagrams.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <div class="logo-dot"></div>
+            <span class="logo-text">UML PORTFOLIO</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#hero">HOME</a></li>
+            <li class="nav-item"><a href="#about">ABOUT</a></li>
+            <li class="nav-item"><a href="#projects">DIAGRAMS</a></li>
+            <li class="nav-item"><a href="#process">PROCESS</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-content line">
+            <div class="hero-subtitle">
+                <span>✦</span> UML DESIGNER & SYSTEM ARCHITECT
+            </div>
+            <h1 class="hero-title">I DESIGN DIGITAL <span class="gradient">ARCHITECTURES</span></h1>
+            <p class="hero-desc">
+                ยินดีต้อนรับสู่หน้ารวบรวมผลงานออกแบบโครงสร้างระบบยืม-คืนอุปกรณ์ (UML Diagrams Viewer) 
+                ที่รวบรวมแผนภาพการออกแบบระบบ และลอจิกการทำงานเบื้องหลังของฟังก์ชันทั้งหมดในรูปแบบพอร์ทโฟลิโอจำลองระดับพรีเมียม
+            </p>
+        </div>
+        <div class="hero-avatar-container line">
+            <div class="avatar-wrapper">
+                <img src="cyber_avatar.jpg" alt="Developer Avatar" class="avatar-img">
+            </div>
+        </div>
+    </header>
+
+    <!-- Bento Grid Section (Stats & Info) -->
+    <section class="bento-section" id="about">
+        <div class="bento">
+            <!-- Left Bento Column (Skills & Badges) -->
+            <div class="bento-card glass card reveal">
+                <h3>ทักษะและการออกแบบระบบ</h3>
+                <div class="subtitle">SKILLS & DIAGRAMMING METHODS</div>
+                <div class="skills-grid">
+                    <span class="skill-badge">📊 Use Case Diagram</span>
+                    <span class="skill-badge">🔄 Activity Diagram</span>
+                    <span class="skill-badge">📋 Sequence Diagram</span>
+                    <span class="skill-badge">🗄️ Database Normalization</span>
+                    <span class="skill-badge">🔌 API Flow Modeling</span>
+                    <span class="skill-badge">📝 Mermaid.js Syntax</span>
+                    <span class="skill-badge">💾 LocalStorage CRUD</span>
+                    <span class="skill-badge">🤖 Scheduler Logic</span>
+                </div>
+            </div>
+
+            <!-- Right Bento Column (Stats / Metrics) -->
+            <div class="bento-card glass card reveal">
+                <h3>สถิติและความสมบูรณ์</h3>
+                <div class="subtitle">PROJECT METRICS & COVERAGE</div>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-num gradient" data-target="6">0</div>
+                        <div class="stat-label">แผนภาพระบบทั้งหมด</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num gradient" data-target="2">0</div>
+                        <div class="stat-label">ฟังก์ชันหลักที่รองรับ</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num gradient" data-target="100">0</div>
+                        <div class="stat-label">ความถูกต้องของลอจิก (%)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num gradient" data-target="1">0</div>
+                        <div class="stat-label">แอปพลิเคชันต้นแบบ (Prototype)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects (Diagrams Viewer Trigger) -->
+    <section class="projects-section" id="projects">
+        <div class="section-header">
+            <span class="section-tag">UML MODELING</span>
+            <h2 class="section-title">ผลงานการออกแบบแผนภาพระบบ</h2>
+        </div>
+
+        <div class="project-grid">
+            <!-- Project 1: User Registration -->
+            <div class="project-card glass card reveal">
+                <div class="project-strip project-strip-1"></div>
+                <div class="project-body">
+                    <div class="project-tag">FUNCTION 1</div>
+                    <h3 class="project-name">ระบบลงทะเบียนผู้ใช้งานใหม่ (User Registration)</h3>
+                    <p class="project-desc">
+                        ครอบคลุมขั้นตอนการกรอกข้อมูล ตรวจสอบอีเมลมหาวิทยาลัยซ้ำ การเข้ารหัส Hash รหัสผ่าน การส่งลิงก์ยืนยันตัวตน 
+                        และระบบ Scheduler ลบบัญชีที่ pending เกิน 24 ชั่วโมงตามเกณฑ์เงื่อนไขในกระบวนการทำงาน
+                    </p>
+                    <div class="project-footer">
+                        <button class="btn btn-primary view-diagrams-btn" data-func="func1">
+                            🔎 เปิดดูแผนภาพระบบ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Overdue Notification -->
+            <div class="project-card glass card reveal">
+                <div class="project-strip project-strip-2"></div>
+                <div class="project-body">
+                    <div class="project-tag">FUNCTION 2</div>
+                    <h3 class="project-name">แจ้งเตือนอุปกรณ์เกินกำหนดคืน (Overdue Notification)</h3>
+                    <p class="project-desc">
+                        วางโครงสร้างการทำงานอัตโนมัติของ Scheduler ทุกวันเวลา 08:00 น. ตรวจหาประวัติค้างส่ง คำนวณวันล่าช้า 
+                        ส่งอีเมลเตือนผู้ยืม และระบบยกระดับสถานะแจ้งเตือนส่งต่อให้อาจารย์ประจำวิชาเมื่อเลยกำหนดเกิน 7 วัน
+                    </p>
+                    <div class="project-footer">
+                        <button class="btn btn-primary view-diagrams-btn" data-func="func2">
+                            🔎 เปิดดูแผนภาพระบบ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Library Prototype Link -->
+            <div class="project-card glass card reveal">
+                <div class="project-strip project-strip-3"></div>
+                <div class="project-body">
+                    <div class="project-tag">PROTOTYPE APP</div>
+                    <h3 class="project-name">เว็บแอปพลิเคชันระบบยืม-คืนจำลอง (Interactive System)</h3>
+                    <p class="project-desc">
+                        แอปพลิเคชัน Single Page Application จำลองการยืม-คืน สอดคล้องตามกลไกและ Database Schema 
+                        ตามแผนภาพโครงสร้างทั้ง 6 มีระบบแจ้งเตือนสีแดงกระพริบ และแผง Time Travel จำลองเวลาครบวงจร
+                    </p>
+                    <div class="project-footer">
+                        <a href="index.html" class="btn btn-secondary">
+                            🚀 เปิดแอปพลิเคชันจำลอง
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Process Section (Timeline) -->
+    <section class="process-section" id="process">
+        <div class="section-header">
+            <span class="section-tag">MY PROCESS</span>
+            <h2 class="section-title">ขั้นตอนการทำแผนภาพสู่การเขียนโปรแกรม</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot">01</div>
+                <div class="timeline-title">วิเคราะห์โจทย์ (Discover)</div>
+                <div class="timeline-desc">ศึกษาเงื่อนไขการทำงานและโครงสร้างข้อมูลจากความต้องการของระบบ</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">02</div>
+                <div class="timeline-title">วาดพฤติกรรม (Model)</div>
+                <div class="timeline-desc">ร่าง Use Case และลอจิกการตัดสินใจในรูปแบบ Activity Diagram</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">03</div>
+                <div class="timeline-title">วางลำดับเวลา (Sequence)</div>
+                <div class="timeline-desc">เขียน Sequence Diagram เพื่อระบุโครงสร้างการส่งผ่านข้อมูลของระบบ</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">04</div>
+                <div class="timeline-title">ตรวจสอบร่วมกัน (Verify)</div>
+                <div class="timeline-desc">ยืนยันความสัมพันธ์และความครบถ้วนของเงื่อนไขระหว่างแผนภาพ</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">05</div>
+                <div class="timeline-title">โค้ดโปรโตไทป์ (Develop)</div>
+                <div class="timeline-desc">สร้างเว็บแอปพลิเคชันจำลองระบบและฐานข้อมูลเพื่อทดสอบการทำงานจริง</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <div class="logo-dot"></div>
+            <span>UML DIAGRAMS Documentation PORTFOLIO</span>
+        </div>
+        <div class="footer-copyright">
+            © 2026 Systems Engineering. Designed & Built with Passion.
+        </div>
+    </footer>
+
+    <!-- ═══════════════════ MODAL OVERLAY ═══════════════════ -->
+    <div class="modal-overlay" id="diagram-modal">
+        <div class="modal glass">
+            <div class="modal-header">
+                <h3 id="modal-title">แผนภาพระบบ</h3>
+                <button class="modal-close" id="close-modal-btn">✕</button>
+            </div>
+            <div class="modal-tabs">
+                <button class="modal-tab active" data-tab="usecase">Use Case Diagram</button>
+                <button class="modal-tab" data-tab="activity">Activity Diagram</button>
+                <button class="modal-tab" data-tab="sequence">Sequence Diagram</button>
+            </div>
+            <div class="modal-body">
+                <!-- Use Case View -->
+                <div class="diagram-view active" id="modal-view-usecase">
+                    <div class="mermaid-target" id="usecase-svg-container"></div>
+                    
+                    <!-- Legends will be swapped based on active tab/function -->
+                    <div class="legend" id="usecase-legend" style="margin-top: 20px;"></div>
+                </div>
+
+                <!-- Activity View -->
+                <div class="diagram-view" id="modal-view-activity">
+                    <div class="mermaid-target" id="activity-svg-container"></div>
+                    <div class="legend" id="activity-legend" style="margin-top: 20px;"></div>
+                </div>
+
+                <!-- Sequence View -->
+                <div class="diagram-view" id="modal-view-sequence">
+                    <div class="mermaid-target" id="sequence-svg-container"></div>
+                    <div class="legend" id="sequence-legend" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ HIDDEN PRE-RENDER CONTAINERS ═══════════════════ -->
+    <!-- We render diagrams on page load inside this invisible area to prevent layout issues in hidden tabs -->
+    <div id="diagrams-pre-render" style="position: absolute; left: -9999px; top: -9999px; width: 1000px; opacity: 0; pointer-events: none;">
+        
+        <!-- FUNCTION 1 -->
+        <div id="render-f1-usecase">
+            <div class="mermaid">
+flowchart LR
+    subgraph system["🖥️ ระบบลงทะเบียนผู้ใช้งานใหม่"]
+        direction TB
+
+        UC1["UC1: กรอกแบบฟอร์มลงทะเบียน\n────────────────\n📋 Precondition:\n• ยังไม่มีบัญชีในระบบ\n────────────────\n📋 Postcondition:\n• ข้อมูล fullName, email, password\nถูกส่งเข้าระบบ"]
+
+        UC2["UC2: ตรวจสอบข้อมูลซ้ำ\n────────────────\n📋 Precondition:\n• ข้อมูลผ่านการตรวจรูปแบบ\n────────────────\n📋 Postcondition:\n• email ไม่ซ้ำกับ users.email"]
+
+        UC3["UC3: สร้างบัญชีผู้ใช้\n────────────────\n📋 Precondition:\n• email ไม่ซ้ำ\n────────────────\n📋 Postcondition:\n• users.status = 'pending'\n• passwordHash ถูกเข้ารหัส"]
+
+        UC4["UC4: ยืนยันตัวตนผ่านอีเมล\n────────────────\n📋 Precondition:\n• users.status = 'pending'\n────────────────\n📋 Postcondition:\n• users.status = 'active'"]
+
+        UC5["UC5: แจ้งอีเมลซ้ำ\n────────────────\n📋 Precondition:\n• email มีอยู่ใน users แล้ว\n────────────────\n📋 Postcondition:\n• แจ้งผู้สมัครให้ใช้อีเมลอื่น"]
+
+        UC6["UC6: ยกเลิกบัญชีหมดเวลา\n────────────────\n📋 Precondition:\n• users.status = 'pending'\n• เกิน 24 ชม.\n────────────────\n📋 Postcondition:\n• ลบข้อมูลออกจาก users"]
+
+        UC1 -- "«include»\nทำทุกครั้ง" --> UC2
+        UC2 -- "«include»\nทำทุกครั้ง" --> UC3
+        UC3 -- "«include»\nทำทุกครั้ง" --> UC4
+        UC2 -. "«extend»\n[email ซ้ำ]" .-> UC5
+        UC4 -. "«extend»\n[เกิน 24 ชม.]" .-> UC6
+    end
+
+    Applicant["👤\nผู้สมัคร\n(Applicant)"]
+    EmailSvc["📧\nระบบอีเมล\n(Email Service)"]
+    Scheduler["⏰\nตัวจับเวลา\n(Scheduler)"]
+
+    Applicant --- UC1
+    Applicant --- UC4
+    EmailSvc --- UC4
+    Scheduler --- UC6
+
+    style system fill:#EDE7F6,stroke:#5E35B1,color:#000
+    style UC1 fill:#E3F2FD,stroke:#1565C0,color:#000
+    style UC2 fill:#E3F2FD,stroke:#1565C0,color:#000
+    style UC3 fill:#E8F5E9,stroke:#2E7D32,color:#000
+    style UC4 fill:#E8F5E9,stroke:#2E7D32,color:#000
+    style UC5 fill:#FBE9E7,stroke:#D84315,color:#000
+    style UC6 fill:#FBE9E7,stroke:#D84315,color:#000
+            </div>
+        </div>
+
+        <div id="render-f1-activity">
+            <div class="mermaid">
+flowchart TD
+    Start(("●"))
+    A["📝 ผู้สมัครกรอกแบบฟอร์มลงทะเบียน\nfield: fullName, email, password"]
+    B{"ตรวจสอบ\nรูปแบบข้อมูล?"}
+    B1["❌ แสดงข้อผิดพลาด\nเช่น email ไม่ถูกรูปแบบ\npassword สั้นกว่า 8 ตัว"]
+    C["🔍 ตรวจสอบอีเมลซ้ำ\nSELECT * FROM users\nWHERE email = ?"]
+    D{"อีเมลนี้\nมีในระบบแล้ว?"}
+    D1["❌ แจ้งว่าอีเมลนี้ถูกใช้แล้ว\nกรุณาใช้อีเมลอื่น"]
+    E["🔐 เข้ารหัสรหัสผ่าน\npasswordHash = bcrypt(password)"]
+    F["💾 บันทึกข้อมูลผู้ใช้ใหม่\nINSERT INTO users\n(fullName, email, passwordHash,\nstatus='pending')"]
+    G["📧 ส่งอีเมลยืนยันตัวตน\nส่ง verification link\nไปที่ users.email"]
+    H{"ผู้สมัคร\nคลิกยืนยัน?"}
+    I["✅ เปิดใช้งานบัญชี\nUPDATE users\nSET status='active'\nWHERE id = ?"]
+    J{"เกิน 24 ชม.\nหรือยัง?"}
+    J1["🗑️ ยกเลิกบัญชีชั่วคราว\nDELETE FROM users\nWHERE status='pending'\nAND created_at < 24h"]
+    K["🎉 ลงทะเบียนสำเร็จ\nผู้ใช้เข้าสู่ระบบได้"]
+    End(("◉"))
+
+    Start --> A
+    A --> B
+    B -- "ไม่ผ่าน" --> B1
+    B1 --> A
+    B -- "ผ่าน" --> C
+    C --> D
+    D -- "มีแล้ว" --> D1
+    D1 --> A
+    D -- "ยังไม่มี" --> E
+    E --> F
+    F --> G
+    G --> H
+    H -- "คลิกยืนยัน" --> I
+    I --> K
+    K --> End
+    H -- "ไม่คลิก" --> J
+    J -- "เกิน 24 ชม." --> J1
+    J1 --> End
+    J -- "ยังไม่เกิน" --> H
+
+    style Start fill:#000,stroke:#000,color:#fff
+    style End fill:#000,stroke:#333,color:#fff
+    style B fill:#FFF3CD,stroke:#FFC107,color:#000
+    style D fill:#FFF3CD,stroke:#FFC107,color:#000
+    style H fill:#FFF3CD,stroke:#FFC107,color:#000
+    style J fill:#FFF3CD,stroke:#FFC107,color:#000
+    style B1 fill:#FFCDD2,stroke:#F44336,color:#000
+    style D1 fill:#FFCDD2,stroke:#F44336,color:#000
+    style J1 fill:#FFCDD2,stroke:#F44336,color:#000
+    style E fill:#BBDEFB,stroke:#2196F3,color:#000
+    style F fill:#BBDEFB,stroke:#2196F3,color:#000
+    style G fill:#C8E6C9,stroke:#4CAF50,color:#000
+    style I fill:#C8E6C9,stroke:#4CAF50,color:#000
+    style K fill:#E1BEE7,stroke:#9C27B0,color:#000
+            </div>
+        </div>
+
+        <div id="render-f1-sequence">
+            <div class="mermaid">
+sequenceDiagram
+    autonumber
+
+    actor Applicant as 👤 ผู้สมัคร
+    participant UI as 🖥️ หน้าเว็บ<br/>(Frontend)
+    participant Server as ⚙️ เซิร์ฟเวอร์<br/>(Backend)
+    participant DB as 🗄️ ฐานข้อมูล<br/>(Database)
+    participant Email as 📧 ระบบอีเมล
+
+    Note over Applicant,Email: 📝 ขั้นตอนการลงทะเบียนผู้ใช้งานใหม่
+
+    Applicant->>+UI: กรอกข้อมูลลงทะเบียน<br/>(fullName, email, password)
+
+    UI->>UI: ตรวจสอบรูปแบบข้อมูล<br/>(email format, password ≥ 8 ตัว)
+
+    alt ❌ ข้อมูลไม่ถูกรูปแบบ
+        UI-->>Applicant: แสดงข้อผิดพลาด<br/>(กรุณาตรวจสอบข้อมูลอีกครั้ง)
+    else ✅ ข้อมูลถูกรูปแบบ
+        UI->>+Server: ส่งข้อมูลลงทะเบียน<br/>POST /api/register<br/>{fullName, email, password}
+
+        Server->>+DB: ตรวจสอบอีเมลซ้ำ<br/>SELECT * FROM users<br/>WHERE email = ?
+        DB-->>-Server: ผลการตรวจสอบ
+
+        alt ❌ อีเมลซ้ำ [email มีอยู่แล้ว]
+            Server-->>UI: ส่งข้อผิดพลาดกลับ<br/>{error: 'email_exists'}
+            UI-->>Applicant: แจ้งว่าอีเมลนี้ถูกใช้แล้ว
+        else ✅ อีเมลไม่ซ้ำ
+            Server->>Server: เข้ารหัสรหัสผ่าน<br/>passwordHash = bcrypt(password)
+
+            Server->>+DB: บันทึกผู้ใช้ใหม่<br/>INSERT INTO users<br/>(fullName, email, passwordHash,<br/>status='pending')
+            Note right of DB: 📝 ข้อมูลที่บันทึก:<br/>{id: auto,<br/>fullName: string,<br/>email: string,<br/>passwordHash: hash,<br/>status: 'pending'}
+            DB-->>-Server: userId
+
+            Server->>+Email: ส่งอีเมลยืนยันตัวตน<br/>ถึง: email<br/>แนบ: verification link
+            Email-->>-Server: ส่งสำเร็จ ✓
+
+            Server-->>-UI: ลงทะเบียนเบื้องต้นสำเร็จ
+            UI-->>Applicant: กรุณาตรวจสอบอีเมล<br/>เพื่อยืนยันตัวตน
+
+            Email->>Applicant: 📩 ได้รับอีเมลยืนยัน
+
+            alt ✅ คลิกยืนยันภายใน 24 ชม.
+                Applicant->>+Server: คลิกลิงก์ยืนยัน<br/>GET /api/verify?token=xxx
+                Server->>+DB: เปิดใช้งานบัญชี<br/>UPDATE users<br/>SET status='active'<br/>WHERE id = ?
+                DB-->>-Server: อัปเดตสำเร็จ ✓
+                Server-->>-Applicant: 🎉 ยืนยันสำเร็จ<br/>เข้าสู่ระบบได้แล้ว
+            else ❌ ไม่ยืนยันภายใน 24 ชม.
+                Note right of DB: ⏰ Scheduler ลบบัญชี<br/>DELETE FROM users<br/>WHERE status='pending'<br/>AND created_at < 24h
+            end
+        end
+    end
+
+    Note over Applicant,Email: ✅ จบขั้นตอนการลงทะเบียน
+            </div>
+        </div>
+
+        <!-- FUNCTION 2 -->
+        <div id="render-f2-usecase">
+            <div class="mermaid">
+flowchart LR
+    subgraph system["🖥️ ระบบแจ้งเตือนอุปกรณ์เกินกำหนดคืน"]
+        direction TB
+
+        UC1["UC1: ตรวจสอบอุปกรณ์เกินกำหนด\n────────────────\n📋 Precondition:\n• borrow_records มีข้อมูล\n• returnDate IS NULL\n────────────────\n📋 Postcondition:\n• ได้รายการที่ daysLate > 0"]
+
+        UC2["UC2: สร้างการแจ้งเตือน\n────────────────\n📋 Precondition:\n• daysLate > 0\n────────────────\n📋 Postcondition:\n• alerts.status = 'unread'\n• alerts.borrowId ถูกบันทึก"]
+
+        UC3["UC3: ส่งอีเมลแจ้งผู้ยืม\n────────────────\n📋 Precondition:\n• alerts.notifiedAt ≠ วันนี้\n────────────────\n📋 Postcondition:\n• alerts.notifiedAt = now()"]
+
+        UC4["UC4: ยกระดับแจ้งเตือน\n────────────────\n📋 Precondition:\n• daysLate > 7\n────────────────\n📋 Postcondition:\n• alerts.escalated = true"]
+
+        UC5["UC5: ดูรายชื่อผู้เกินกำหนด\n────────────────\n📋 Precondition:\n• alerts.escalated = true\n────────────────\n📋 Postcondition:\n• แสดงรายการพร้อม daysLate"]
+
+        UC6["UC6: คืนอุปกรณ์เพื่อปิดแจ้งเตือน\n────────────────\n📋 Precondition:\n• returnDate IS NULL\n────────────────\n📋 Postcondition:\n• returnDate = now()\n• alerts.status = 'resolved'"]
+
+        UC1 -- "«include»\nทำทุกครั้ง" --> UC2
+        UC2 -- "«include»\nทำทุกครั้ง" --> UC3
+        UC3 -. "«extend»\n[daysLate > 7]" .-> UC4
+    end
+
+    Timer["⏰\nตัวจับเวลา\n(Scheduler)"]
+    Borrower["👤\nผู้ยืม\n(Borrower)"]
+    Teacher["👨‍🏫\nอาจารย์\n(Teacher)"]
+    EmailSvc["📧\nระบบอีเมล\n(Email Service)"]
+
+    Timer --- UC1
+    Borrower --- UC6
+    Borrower --- UC3
+    Teacher --- UC5
+    Teacher --- UC4
+    EmailSvc --- UC3
+    EmailSvc --- UC4
+
+    style system fill:#F3E5F5,stroke:#7B1FA2,color:#000
+    style UC1 fill:#E3F2FD,stroke:#1565C0,color:#000
+    style UC2 fill:#E3F2FD,stroke:#1565C0,color:#000
+    style UC3 fill:#E8F5E9,stroke:#2E7D32,color:#000
+    style UC4 fill:#FBE9E7,stroke:#D84315,color:#000
+    style UC5 fill:#FFF8E1,stroke:#F9A825,color:#000
+    style UC6 fill:#E8F5E9,stroke:#2E7D32,color:#000
+            </div>
+        </div>
+
+        <div id="render-f2-activity">
+            <div class="mermaid">
+flowchart TD
+    Start(("●"))
+    A["⏰ ตัวจับเวลาทำงานอัตโนมัติ\n(Scheduler ทำงานทุกวัน เวลา 08:00)"]
+    B["🔍 ดึงรายการอุปกรณ์ที่ยังไม่คืน\nSQL: SELECT * FROM borrow_records\nWHERE returnDate IS NULL"]
+    C{"มีรายการ\nที่ยังไม่คืน?"}
+    D["🧮 คำนวณจำนวนวันที่เกินกำหนด\ndaysLate = today − dueDate"]
+    E{"daysLate > 0\nเกินกำหนดแล้ว?"}
+    F["📝 สร้าง/อัปเดตการแจ้งเตือน\nINSERT INTO alerts\n(borrowId, daysLate, status='unread')\nหรือ UPDATE alerts SET daysLate = ?"]
+    G{"เคยส่งแจ้งเตือน\nวันนี้แล้วหรือยัง?\n(เช็ค alerts.notifiedAt)"}
+    H["📧 ส่งอีเมลแจ้งเตือนผู้ยืม\nส่งไปที่: users.email\nเนื้อหา: ชื่ออุปกรณ์ + จำนวนวันที่เกิน"]
+    I["📅 บันทึกเวลาที่ส่งแจ้งเตือน\nUPDATE alerts\nSET notifiedAt = now()"]
+    J{"daysLate > 7\nเกิน 7 วัน?"}
+    K["⬆️ ยกระดับแจ้งเตือน\nUPDATE alerts\nSET escalated = true"]
+    L["📧 ส่งอีเมลแจ้งอาจารย์\nแนบ: ชื่อผู้ยืม + อุปกรณ์ + จำนวนวัน"]
+    M{"ยังมีรายการ\nถัดไป?"}
+    N["✅ บันทึก Log สรุปผล\nจำนวนที่แจ้ง / จำนวนที่ยกระดับ"]
+    End(("◉"))
+
+    Start --> A
+    A --> B
+    B --> C
+    C -- "ไม่มี" --> N
+    C -- "มี" --> D
+    D --> E
+    E -- "ไม่เกิน" --> M
+    E -- "เกินแล้ว" --> F
+    F --> G
+    G -- "ส่งแล้ววันนี้" --> J
+    G -- "ยังไม่ส่งวันนี้" --> H
+    H --> I
+    I --> J
+    J -- "ไม่เกิน 7 วัน" --> M
+    J -- "เกิน 7 วัน" --> K
+    K --> L
+    L --> M
+    M -- "มี" --> D
+    M -- "ไม่มี" --> N
+    N --> End
+
+    style Start fill:#000,stroke:#000,color:#fff
+    style End fill:#000,stroke:#333,color:#fff
+    style C fill:#FFF3CD,stroke:#FFC107,color:#000
+    style E fill:#FFF3CD,stroke:#FFC107,color:#000
+    style G fill:#FFF3CD,stroke:#FFC107,color:#000
+    style J fill:#FFD6D6,stroke:#FF5252,color:#000
+    style M fill:#FFF3CD,stroke:#FFC107,color:#000
+    style K fill:#FFCDD2,stroke:#F44336,color:#000
+    style L fill:#FFCDD2,stroke:#F44336,color:#000
+    style H fill:#C8E6C9,stroke:#4CAF50,color:#000
+    style F fill:#BBDEFB,stroke:#2196F3,color:#000
+    style I fill:#BBDEFB,stroke:#2196F3,color:#000
+    style N fill:#E1BEE7,stroke:#9C27B0,color:#000
+            </div>
+        </div>
+
+        <div id="render-f2-sequence">
+            <div class="mermaid">
+sequenceDiagram
+    autonumber
+
+    actor Scheduler as ⏰ ตัวจับเวลา
+    participant Server as 🖥️ เซิร์ฟเวอร์<br/>(Backend)
+    participant DB as 🗄️ ฐานข้อมูล<br/>(Database)
+    participant Email as 📧 ระบบอีเมล
+    actor Borrower as 👤 ผู้ยืม
+    actor Teacher as 👨‍🏫 อาจารย์
+
+    Note over Scheduler,Teacher: 🕗 ทำงานอัตโนมัติทุกวัน เวลา 08:00 น.
+
+    Scheduler->>+Server: เรียกตรวจสอบอุปกรณ์เกินกำหนด<br/>(triggerOverdueCheck)
+
+    Server->>+DB: ดึงรายการอุปกรณ์ที่ยังไม่คืน<br/>SELECT * FROM borrow_records<br/>WHERE returnDate IS NULL
+    DB-->>-Server: ส่งรายการกลับมา<br/>borrow_records[ ] + dueDate
+
+    Note right of Server: 🧮 คำนวณ daysLate<br/>= today − dueDate
+
+    Server->>Server: คำนวณจำนวนวันที่เกินกำหนด<br/>daysLate = today − dueDate
+
+    alt ✅ เกินกำหนดแล้ว [daysLate > 0]
+
+        Server->>+DB: สร้าง/อัปเดตการแจ้งเตือน<br/>INSERT INTO alerts<br/>(borrowId, daysLate, status='unread')
+        Note right of DB: 📝 ข้อมูลที่บันทึก:<br/>{borrowId: int,<br/>daysLate: int,<br/>status: 'unread'}
+        DB-->>-Server: alertId, status='unread'
+
+        Server->>+DB: เช็คว่าส่งแจ้งเตือนวันนี้แล้วหรือยัง<br/>SELECT notifiedAt FROM alerts<br/>WHERE borrowId = ?<br/>AND DATE(notifiedAt) = today
+        DB-->>-Server: ผลการเช็ค
+
+        alt 📧 ยังไม่ส่งวันนี้ [notifiedAt ≠ today]
+            Server->>+Email: ส่งอีเมลแจ้งเตือนผู้ยืม<br/>ถึง: users.email
+            Note right of Email: 📬 เนื้อหาอีเมล:<br/>{equipmentName,<br/>daysLate, dueDate}
+            Email-->>-Server: ส่งสำเร็จ ✓
+
+            Server->>+DB: บันทึกเวลาที่ส่งแจ้งเตือน<br/>UPDATE alerts<br/>SET notifiedAt = now()
+            DB-->>-Server: อัปเดตสำเร็จ ✓
+
+            Email->>Borrower: 📩 ผู้ยืมได้รับอีเมลแจ้งเตือน
+        else 🚫 ส่งแล้ววันนี้ [notifiedAt = today]
+            Note right of Server: ข้ามการส่งอีเมล<br/>(กันส่งซ้ำ)
+        end
+
+        alt ⚠️ เกิน 7 วัน [daysLate > 7]
+            Server->>+DB: ยกระดับการแจ้งเตือน<br/>UPDATE alerts<br/>SET escalated = true
+            Note right of DB: 🔺 ข้อมูลที่อัปเดต:<br/>{escalated: true,<br/>daysLate: int}
+            DB-->>-Server: ยกระดับสำเร็จ ✓
+
+            Server->>+Email: ส่งอีเมลแจ้งอาจารย์<br/>เรื่อง: นักศึกษาค้างเกิน 7 วัน
+            Note right of Email: 📬 เนื้อหาอีเมล:<br/>{studentName,<br/>equipmentName,<br/>daysLate}
+            Email-->>-Server: ส่งสำเร็จ ✓
+            Email->>Teacher: 📩 อาจารย์ได้รับอีเมลแจ้ง
+        else ✅ ยังไม่เกิน 7 วัน [daysLate ≤ 7]
+            Note right of Server: ยังไม่ยกระดับ<br/>แจ้งเฉพาะผู้ยืม
+        end
+
+    else ❌ ยังไม่เกินกำหนด [daysLate ≤ 0]
+        Note right of Server: ข้ามรายการนี้
+    end
+
+    Server-->>-Scheduler: สรุปผลการทำงาน<br/>{totalChecked, totalNotified, totalEscalated}
+    Note over Scheduler,Teacher: ✅ จบการทำงานรอบนี้
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Mermaid.js & Client Logic Script -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script src="script-diagrams.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบยืม-คืนหนังสือ | Library System</title>
+    <meta name="description" content="ระบบยืม-คืนหนังสือออนไลน์ พร้อมแจ้งเตือนเกินกำหนดคืน">
+    <!-- Google Fonts: Sora (Headings) & Chakra Petch (Thai/Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════ AUTH VIEWS ═══════════════════ -->
+
+<!-- LOGIN -->
+<div class="auth-view view active" id="view-login">
+    <div class="auth-card glass">
+        <div class="auth-logo line-rise">
+            <div class="auth-logo-icon">📚</div>
+            <h1 class="gradient-text">ระบบยืม-คืนหนังสือ</h1>
+            <p>Library Management System</p>
+        </div>
+        <form id="login-form" autocomplete="off">
+            <div class="form-group line-rise">
+                <label for="login-email">อีเมล</label>
+                <input type="email" id="login-email" class="form-input" placeholder="example@university.ac.th" required>
+            </div>
+            <div class="form-group line-rise">
+                <label for="login-password">รหัสผ่าน</label>
+                <input type="password" id="login-password" class="form-input" placeholder="กรอกรหัสผ่าน" required>
+            </div>
+            <div id="login-error" class="form-error" style="display:none"></div>
+            <button type="submit" class="btn btn-primary btn-block line-rise" id="login-submit">
+                <span>เข้าสู่ระบบ</span>
+            </button>
+        </form>
+        <div class="auth-footer line-rise">
+            <p>ยังไม่มีบัญชี? <a href="#" id="goto-register">ลงทะเบียนที่นี่</a></p>
+        </div>
+        <div class="auth-demo line-rise">
+            <p>🔑 บัญชีทดสอบ:</p>
+            <div class="demo-accounts">
+                <button class="demo-btn" data-email="student@university.ac.th" data-pass="student123">👤 นักศึกษา</button>
+                <button class="demo-btn" data-email="teacher@university.ac.th" data-pass="teacher123">👨‍🏫 อาจารย์</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- REGISTER -->
+<div class="auth-view view" id="view-register">
+    <div class="auth-card glass">
+        <div class="auth-logo line-rise">
+            <div class="auth-logo-icon">📝</div>
+            <h1 class="gradient-text">ลงทะเบียนผู้ใช้ใหม่</h1>
+            <p>สร้างบัญชีเพื่อเริ่มยืมหนังสือ</p>
+        </div>
+        <form id="register-form" autocomplete="off">
+            <div class="form-group line-rise">
+                <label for="reg-fullname">ชื่อ-นามสกุล</label>
+                <input type="text" id="reg-fullname" class="form-input" placeholder="ชื่อจริง นามสกุล" required>
+                <div class="field-error" id="err-fullname"></div>
+            </div>
+            <div class="form-group line-rise">
+                <label for="reg-email">อีเมล</label>
+                <input type="email" id="reg-email" class="form-input" placeholder="example@university.ac.th" required>
+                <div class="field-error" id="err-email"></div>
+            </div>
+            <div class="form-group line-rise">
+                <label for="reg-password">รหัสผ่าน <span class="hint">(อย่างน้อย 8 ตัวอักษร)</span></label>
+                <input type="password" id="reg-password" class="form-input" placeholder="กรอกรหัสผ่าน" required minlength="8">
+                <div class="field-error" id="err-password"></div>
+            </div>
+            <div class="form-group line-rise">
+                <label for="reg-confirm">ยืนยันรหัสผ่าน</label>
+                <input type="password" id="reg-confirm" class="form-input" placeholder="กรอกรหัสผ่านอีกครั้ง" required>
+                <div class="field-error" id="err-confirm"></div>
+            </div>
+            <div id="register-error" class="form-error" style="display:none"></div>
+            <button type="submit" class="btn btn-primary btn-block line-rise" id="register-submit">
+                <span>ลงทะเบียน</span>
+            </button>
+        </form>
+        <div class="auth-footer line-rise">
+            <p>มีบัญชีแล้ว? <a href="#" id="goto-login">เข้าสู่ระบบ</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- VERIFY EMAIL -->
+<div class="auth-view view" id="view-verify">
+    <div class="auth-card glass">
+        <div class="auth-logo line-rise">
+            <div class="auth-logo-icon">📧</div>
+            <h1 class="gradient-text">ยืนยันอีเมล</h1>
+            <p>เราได้ส่งลิงก์ยืนยันไปที่อีเมลของคุณแล้ว</p>
+        </div>
+        <div class="verify-info line-rise">
+            <div class="verify-email-display" id="verify-email-display">email@example.com</div>
+            <p class="verify-text">สถานะบัญชี: <span class="badge badge-warning" id="verify-status">รอยืนยัน (pending)</span></p>
+            <p class="verify-note">ในระบบจริง คุณจะได้รับลิงก์ยืนยันทางอีเมล<br>สำหรับ Demo กดปุ่มด้านล่างเพื่อจำลองการยืนยัน</p>
+        </div>
+        <button class="btn btn-primary btn-block line-rise" id="verify-btn">
+            ✅ จำลองคลิกยืนยันอีเมล
+        </button>
+        <div id="verify-success" class="form-success" style="display:none">
+            ยืนยันสำเร็จ! กำลังเปลี่ยนเส้นทาง...
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════ APP LAYOUT ═══════════════════ -->
+<div class="app-layout" id="app-layout" style="display:none">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <span class="sidebar-logo-icon">📚</span>
+                <span class="sidebar-logo-text">Library System</span>
+            </div>
+            <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">✕</button>
+        </div>
+        <nav class="sidebar-nav" id="sidebar-nav">
+            <a href="#" class="nav-link active" data-view="dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">แดชบอร์ด</span>
+            </a>
+            <a href="#" class="nav-link" data-view="catalog">
+                <span class="nav-icon">📖</span>
+                <span class="nav-text">รายการหนังสือ</span>
+            </a>
+            <a href="#" class="nav-link" data-view="my-borrows">
+                <span class="nav-icon">📋</span>
+                <span class="nav-text">หนังสือที่ยืมอยู่</span>
+                <span class="nav-badge" id="borrow-count" style="display:none">0</span>
+            </a>
+            <a href="#" class="nav-link" data-view="notifications">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">การแจ้งเตือน</span>
+                <span class="nav-badge nav-badge-danger" id="notif-count" style="display:none">0</span>
+            </a>
+            <!-- Teacher only -->
+            <a href="#" class="nav-link teacher-only" data-view="overdue-manage" style="display:none">
+                <span class="nav-icon">⚠️</span>
+                <span class="nav-text">จัดการเกินกำหนด</span>
+                <span class="nav-badge nav-badge-danger" id="escalated-count" style="display:none">0</span>
+            </a>
+            <a href="diagrams.html" class="nav-link" id="nav-link-diagrams">
+                <span class="nav-icon">📐</span>
+                <span class="nav-text">แผนภาพระบบ (UML)</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="user-avatar" id="sidebar-avatar">👤</div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebar-name">ชื่อผู้ใช้</div>
+                    <div class="user-role" id="sidebar-role">บทบาท</div>
+                </div>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="logout-btn">ออกจากระบบ</button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <button class="hamburger" id="hamburger" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <h2 class="topbar-title" id="topbar-title">แดชบอร์ด</h2>
+            <div class="topbar-actions">
+                <button class="topbar-notif" id="topbar-notif" title="การแจ้งเตือน">
+                    🔔
+                    <span class="notif-dot" id="notif-dot" style="display:none"></span>
+                </button>
+                <div class="topbar-user">
+                    <span id="topbar-name">ผู้ใช้</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="content-area">
+
+            <!-- ─── DASHBOARD ─── -->
+            <div class="view active" id="view-dashboard">
+                <!-- Bento Grid Layout for Stats -->
+                <div class="stats-grid" id="stats-grid">
+                    <div class="stat-card stat-blue card reveal">
+                        <div class="stat-icon">📖</div>
+                        <div class="stat-value stat-num" id="stat-total-books" data-target="0">0</div>
+                        <div class="stat-label">หนังสือทั้งหมด</div>
+                    </div>
+                    <div class="stat-card stat-emerald card reveal">
+                        <div class="stat-icon">📋</div>
+                        <div class="stat-value stat-num" id="stat-my-borrows" data-target="0">0</div>
+                        <div class="stat-label">กำลังยืมอยู่</div>
+                    </div>
+                    <div class="stat-card stat-amber card reveal">
+                        <div class="stat-icon">⏰</div>
+                        <div class="stat-value stat-num" id="stat-overdue" data-target="0">0</div>
+                        <div class="stat-label">เกินกำหนดคืน</div>
+                    </div>
+                    <div class="stat-card stat-red card reveal">
+                        <div class="stat-icon">🔔</div>
+                        <div class="stat-value stat-num" id="stat-alerts" data-target="0">0</div>
+                        <div class="stat-label">แจ้งเตือนยังไม่อ่าน</div>
+                    </div>
+                </div>
+
+                <!-- Scheduler Button & Time Simulation -->
+                <div class="card reveal" id="scheduler-card" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <h3>⏰ ระบบตรวจสอบอัตโนมัติ (Scheduler) & ระบบจำลองเวลา</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="scheduler-desc">จำลองการทำงานของ Scheduler ที่ตรวจสอบหนังสือเกินกำหนดทุกวัน เวลา 08:00 น. ตรงกับ <strong>Sequence Diagram ข้อ 1-15</strong></p>
+                        
+                        <div class="simulation-panel" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); padding: 20px; border-radius: 16px; margin-bottom: 24px;">
+                            <h4 style="margin-bottom: 12px; font-weight: 700; color: #a5b4fc; display: flex; align-items: center; gap: 8px; font-family: var(--font-display);">⚙️ ตั้งค่าจำลองวันที่ปัจจุบัน (Time Travel)</h4>
+                            <div class="form-group" style="margin-bottom: 12px;">
+                                <label for="sim-date-input" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px;">จำลองวันที่ปัจจุบันของระบบ:</label>
+                                <input type="date" id="sim-date-input" class="form-input" style="max-width: 250px;">
+                            </div>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; margin: 0;">
+                                💡 *คำแนะนำ: หนังสือ b1 (เลยกำหนด 7 วัน) และ b3 (เลยกำหนด 13 วัน) มีวันครบกำหนดค้างไว้เมื่อหลายวันก่อนตามวันปัจจุบันของคุณ หากคุณต้องการจำลองเวลาล่วงหน้าไปอีกเพื่อทดสอบการเปลี่ยนสถานะหรือการยกระดับ (escalation > 7 วัน) คุณสามารถเลือกวันที่ที่ต้องการได้ที่นี่*
+                            </p>
+                        </div>
+
+                        <button class="btn btn-primary" id="run-scheduler-btn">
+                            🔍 ตรวจสอบหนังสือเกินกำหนดตอนนี้
+                        </button>
+                        <div id="scheduler-log" class="scheduler-log" style="display:none"></div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card reveal" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <h3>📋 กิจกรรมล่าสุด</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="recent-activity" class="activity-list">
+                            <div class="empty-state">
+                                <div class="empty-icon">📭</div>
+                                <p>ยังไม่มีกิจกรรม</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Process Timeline เส้นจุด -->
+                <div class="card reveal" style="margin-bottom: 20px;">
+                    <div class="card-header">
+                        <h4 class="timeline-section-title">🎓 ระบบทำงานอย่างไร</h4>
+                        <h3 class="gradient-text">📋 ขั้นตอนการทำงานของระบบยืม-คืน</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot">01</div>
+                                <div class="timeline-title">ลงทะเบียน / ล็อกอิน</div>
+                                <div class="timeline-desc">ยืนยันตัวตนเข้าสู่ระบบด้วยอีเมลมหาวิทยาลัย</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">02</div>
+                                <div class="timeline-title">ค้นหา & กดยืม</div>
+                                <div class="timeline-desc">เลือกยืมหนังสือที่ว่าง พร้อมยืนยันด้วยรหัสผ่านอีกครั้ง</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">03</div>
+                                <div class="timeline-title">ตรวจสอบล่าช้า</div>
+                                <div class="timeline-desc">ระบบอัตโนมัติ (Scheduler) คอยรันตรวจประวัติทุกวันเวลา 8:00 น.</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">04</div>
+                                <div class="timeline-title">เตือนภัย & ยกระดับ</div>
+                                <div class="timeline-desc">เตือนทางระบบและอีเมล หากล่าช้าเกิน 7 วันจะส่งเรื่องให้อาจารย์</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot">05</div>
+                                <div class="timeline-title">ส่งคืนหนังสือ</div>
+                                <div class="timeline-desc">คืนหนังสือเพื่อเคลียร์สถานะประวัติ และปรับปรุงเป็นสถานะว่าง</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── BOOK CATALOG ─── -->
+            <div class="view" id="view-catalog">
+                <div class="catalog-header">
+                    <div class="search-box">
+                        <input type="text" id="book-search" class="form-input" placeholder="🔍 ค้นหาหนังสือ...">
+                    </div>
+                    <div class="filter-group">
+                        <select id="category-filter" class="form-input form-select">
+                            <option value="">ทุกหมวดหมู่</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="book-grid" id="book-grid">
+                    <!-- Books rendered by JS -->
+                </div>
+            </div>
+
+            <!-- ─── MY BORROWS ─── -->
+            <div class="view" id="view-my-borrows">
+                <div id="borrows-list" class="borrows-list">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- ─── NOTIFICATIONS ─── -->
+            <div class="view" id="view-notifications">
+                <div id="notif-list" class="notif-list">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- ─── OVERDUE MANAGEMENT (TEACHER) ─── -->
+            <div class="view" id="view-overdue-manage">
+                <div class="overdue-stats" id="overdue-stats">
+                    <!-- Rendered by JS -->
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>📋 รายชื่อนักศึกษาที่เกินกำหนด (escalated = true)</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="data-table" id="overdue-table">
+                                <thead>
+                                    <tr>
+                                        <th>นักศึกษา</th>
+                                        <th>หนังสือ</th>
+                                        <th>วันที่ยืม</th>
+                                        <th>วันครบกำหนด</th>
+                                        <th>เกินมา (วัน)</th>
+                                        <th>สถานะ</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overdue-tbody">
+                                    <!-- Rendered by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /content-area -->
+    </div><!-- /main-content -->
+</div><!-- /app-layout -->
+
+<!-- ═══════════════════ MODAL ═══════════════════ -->
+<div class="modal-overlay" id="modal-overlay" style="display:none">
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <h3 id="modal-title">ยืนยัน</h3>
+            <button class="modal-close" id="modal-close">✕</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-footer" id="modal-footer"></div>
+    </div>
+</div>
+
+<!-- ═══════════════════ TOAST ═══════════════════ -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+<script src="db.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
